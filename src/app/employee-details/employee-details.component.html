@@ -1,0 +1,8 @@
+<div class="emp-details">
+  <p [routerLink]="'/'" class="back">&larr; Back</p>
+  <img src="{{ employeeDetail()?.profile }}" alt="profile" />
+  <p>Name: {{ employeeDetail()?.name }}</p>
+  <p>Copaany Name: {{ employeeDetail()?.companyName }}</p>
+  <p>Designation: {{ employeeDetail()?.designation }}</p>
+  <p>ContactNo: {{ employeeDetail()?.contactNo }}</p>
+</div>

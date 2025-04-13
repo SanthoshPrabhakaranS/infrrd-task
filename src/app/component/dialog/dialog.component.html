@@ -1,0 +1,16 @@
+<div class="modal-overlay" *ngIf="visible()" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ title() }}</h2>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-close" (click)="close()">Close</button>
+      <button class="btn-create" (click)="submit()">
+        {{ title() == "Edit Employee" ? "Update" : buttonName() }}
+      </button>
+    </div>
+  </div>
+</div>

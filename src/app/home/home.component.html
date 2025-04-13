@@ -1,0 +1,35 @@
+<div class="container">
+  <app-dialog
+    [visible]="visible()"
+    [title]="title()"
+    (closeModal)="closeModal()"
+    (onSubmit)="onSubmit()"
+    (updateEmployee)="updateEmployee()"
+    [buttonName]="'Create'"
+  >
+    <app-create-employee-form [employeeForm]="employeeForm" />
+  </app-dialog>
+
+  <app-dialog
+    [visible]="showDeleteModal()"
+    [title]="'Delete Employee'"
+    (closeModal)="closeDeleteModal()"
+    (onSubmit)="deleteEmployee()"
+    (updateEmployee)="updateEmployee()"
+    [buttonName]="'Delete'"
+  >
+    <app-delete-employee-form />
+  </app-dialog>
+
+  <div class="table-header">
+    <h3>Employees List</h3>
+
+    <button class="add-employee-btn" (click)="openModal()">Add Employee</button>
+  </div>
+
+  <app-employee-table
+    [employeesList]="employeesList()"
+    [openEditModal]="openEditModal"
+    [openDeleteModal]="openDeleteModal"
+  />
+</div>

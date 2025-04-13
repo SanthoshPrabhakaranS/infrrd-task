@@ -1,0 +1,35 @@
+<table class="employee-table">
+  <thead class="table-head">
+    <tr>
+      <th>Employee ID</th>
+      <th>Name</th>
+      <th>Contact No</th>
+      <th>Designation</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="employeesList.length > 0; else noData">
+      <tr class="table-row" *ngFor="let employee of employeesList">
+        <td [routerLink]="['/employee', employee.id]">{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.contactNo }}</td>
+        <td>{{ employee.designation }}</td>
+        <td class="action-buttons">
+          <button class="edit-btn" (click)="onOpenEditModal(employee.id)">
+            Edit
+          </button>
+          <button class="delete-btn" (click)="onOpenDeleteModal(employee.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-template #noData>
+      <tr>
+        <td colspan="4" class="no-data">No employees found</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

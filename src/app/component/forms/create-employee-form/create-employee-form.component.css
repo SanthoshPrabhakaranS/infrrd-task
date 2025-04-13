@@ -1,0 +1,32 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+label {
+  font-size: 13px;
+  color: #333;
+  font-weight: 700;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+}

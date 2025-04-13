@@ -1,0 +1,69 @@
+<form [formGroup]="employeeForm">
+  <div class="modal-content">
+    <div class="input-group">
+      <label for="employeeName">Employee name</label>
+      <input
+        id="employeeName"
+        [formControl]="getControl('name')"
+        class="input"
+        type="text"
+        placeholder="Enter employee name"
+      />
+      @if(getControl('name').invalid && getControl('name').touched) {
+      <p class="error-message">Employee name is required</p>
+      }
+    </div>
+
+    <div class="input-group">
+      <label for="companyName">Company name</label>
+      <input
+        id="companyName"
+        [formControl]="getControl('companyName')"
+        class="input"
+        type="text"
+        placeholder="Enter company name"
+      />
+      @if(getControl('companyName').invalid &&
+      getControl('companyName').touched) {
+      <p class="error-message">Company name is required</p>
+      }
+    </div>
+
+    <div class="input-group">
+      <label for="contactNo">Contact number</label>
+      <input
+        id="contactNo"
+        [formControl]="getControl('contactNo')"
+        class="input"
+        type="tel"
+        placeholder="Enter contact No."
+        maxlength="10"
+        (input)="formatContactNo($event)"
+      />
+      @if(getControl('contactNo').invalid && getControl('contactNo').touched) {
+      <div class="error-message">
+        @if(getControl('contactNo').hasError('required')) {
+        <span>Contact number is required</span>
+        } @if(getControl('contactNo').hasError('pattern')) {
+        <span>Exactly 10 digits required</span>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="input-group">
+      <label for="designation">Designation</label>
+      <input
+        id="designation"
+        [formControl]="getControl('designation')"
+        class="input"
+        type="text"
+        placeholder="Enter designation"
+      />
+      @if(getControl('designation').invalid &&
+      getControl('designation').touched) {
+      <p class="error-message">Designation is required</p>
+      }
+    </div>
+  </div>
+</form>

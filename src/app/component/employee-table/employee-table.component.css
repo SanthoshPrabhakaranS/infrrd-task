@@ -5,11 +5,17 @@
   border: 1px solid #ccc;
 }
 
+.container {
+  width: 100%;
+  overflow: auto;
+}
+
 .table-head {
   background-color: var(--primary-color);
   height: 50px;
   color: white;
   text-align: left;
+  white-space: nowrap;
 }
 
 .table-head th {
@@ -23,6 +29,17 @@
 
 .table-row td {
   padding-left: 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .employee-table {
+   font-size: 14px;
+  }
+
+  .table-head th {
+    padding-left: 20px;
+  }
 }
 
 .table-row:nth-child(even) {

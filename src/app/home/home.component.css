@@ -44,3 +44,15 @@ label {
   color: #333;
   font-weight: 700;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination-container button {
+  padding: 5px 10px;
+  cursor: pointer;
+}

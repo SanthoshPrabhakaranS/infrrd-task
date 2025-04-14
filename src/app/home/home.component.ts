@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 import { CommonModule } from '@angular/common';
 import { DialogComponent } from '../component/dialog/dialog.component';
@@ -30,10 +30,21 @@ export class HomeComponent {
   employeesService = inject(EmployeesService);
   employeesList = this.employeesService._employees;
 
-  visible = signal(false);
-  showDeleteModal = signal(false);
-  title = signal('Add Employee');
-  employeeId = signal(0);
+  visible = signal<boolean>(false);
+  showDeleteModal = signal<boolean>(false);
+  title = signal<string>('Add Employee');
+  employeeId = signal<number>(0);
+  itemsPerPage = 5;
+  pageNumbers = computed(() => {
+    const totalEmployees = this.employeesList().length;
+    const pageCount = Math.ceil(totalEmployees / this.itemsPerPage);
+    return Array.from({ length: pageCount }).map((_, i) => i + 1);
+  });
+  currentPage = signal<number>(1);
+  paginatedEmployeesList = computed(() => {
+    const start = (this.currentPage() - 1) * this.itemsPerPage;
+    return this.employeesList().slice(start, start + this.itemsPerPage);
+  });
 
   employeeForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -129,4 +140,12 @@ export class HomeComponent {
     this.employeesService.deleteEmployee(this.employeeId());
     this.closeDeleteModal();
   }
+
+  onPageChange = (pageNumber: number) => {
+    if (pageNumber < 1 || pageNumber > this.pageNumbers().length) {
+      return;
+    }
+
+    this.currentPage.set(pageNumber);
+  };
 }

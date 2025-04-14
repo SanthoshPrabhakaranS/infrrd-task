@@ -28,8 +28,28 @@
   </div>
 
   <app-employee-table
-    [employeesList]="employeesList()"
+    [employeesList]="paginatedEmployeesList()"
     [openEditModal]="openEditModal"
     [openDeleteModal]="openDeleteModal"
   />
+
+  <div class="pagination-container">
+    <button
+      [disabled]="currentPage() === 1"
+      (click)="onPageChange(currentPage() - 1)"
+    >
+      &lt;
+    </button>
+    <ng-container *ngFor="let page of pageNumbers()">
+      <button (click)="onPageChange(page)">
+        {{ page }}
+      </button>
+    </ng-container>
+    <button
+      [disabled]="pageNumbers().length === currentPage()"
+      (click)="onPageChange(currentPage() + 1)"
+    >
+      &gt;
+    </button>
+  </div>
 </div>
